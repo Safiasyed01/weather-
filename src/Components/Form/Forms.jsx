@@ -54,7 +54,9 @@ const Forms = () => {
       (err) => {
         console.log("geolocation failed:", err.message);
         fetchWeather(`q=Peshawar`);
-      }
+      },
+        { enableHighAccuracy: true, timeout: 10000 }
+
     )
   }, [])
 
@@ -70,7 +72,7 @@ style={{ background: weatherColors[WeatherData?.weather[0]?.main] || weatherColo
       {isLoading && <p>Loading...</p>}
       {error && <p style={{ color: "red" }}>{error}</p>}
       {WeatherData && (
-        <div className="stats">
+        <div className="main-info">
           <h1>{WeatherData.main.temp}</h1>
           <h4>{WeatherData.weather[0].description}</h4>
           <p>{WeatherData.name}</p>
